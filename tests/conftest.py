@@ -26,7 +26,6 @@ def second_category():
     )
 
 
-
 @pytest.fixture
 def reset_counters():
     """Фикстура для сброса счетчиков перед тестом"""
@@ -38,7 +37,6 @@ def reset_counters():
     Category.product_count = 0
 
 
-
 @pytest.fixture
 def sample_json_data():
     """Фикстура с тестовыми JSON данными"""
@@ -48,12 +46,10 @@ def sample_json_data():
             "description": "Современные смартфоны",
             "products": [
                 {"name": "Samsung", "description": "Galaxy S23", "price": 180000.0, "quantity": 5},
-                {"name": "iPhone", "description": "15 Pro", "price": 210000.0, "quantity": 8}
-            ]
+                {"name": "iPhone", "description": "15 Pro", "price": 210000.0, "quantity": 8},
+            ],
         }
     ]
-
-
 
 
 @pytest.fixture
@@ -75,11 +71,10 @@ def mock_product_data():
             "description": "Современные смартфоны",
             "products": [
                 {"name": "Samsung", "description": "Galaxy S23", "price": 180000.0, "quantity": 5},
-                {"name": "iPhone", "description": "15 Pro", "price": 210000.0, "quantity": 8}
-            ]
+                {"name": "iPhone", "description": "15 Pro", "price": 210000.0, "quantity": 8},
+            ],
         }
     ]
-
 
 
 @pytest.fixture

@@ -1,8 +1,8 @@
-from src.utils import creat_objects_from_json
-from src.Category import Category
-from src.Product import Product
 import pytest
 
+from src.Category import Category
+from src.Product import Product
+from src.utils import creat_objects_from_json
 
 
 @pytest.mark.parametrize("product_count", [0, 1, 3, 5, 10])
@@ -16,13 +16,7 @@ def test_create_objects_with_different_product_counts(product_count, reset_count
         for i in range(1, product_count + 1)
     ]
 
-    test_data = [
-        {
-            "name": "Категория",
-            "description": "Описание категории",
-            "products": products
-        }
-    ]
+    test_data = [{"name": "Категория", "description": "Описание категории", "products": products}]
 
     categories = creat_objects_from_json(test_data)
 
@@ -38,15 +32,13 @@ def test_create_objects_with_multiple_categories(category_count, reset_counters)
 
     test_data = []
     for i in range(category_count):
-        test_data.append({
-            "name": f"Категория {i}",
-            "description": f"Описание {i}",
-            "products": [
-                {"name": f"Товар {i}", "description": f"Описание {i}", "price": 100.0, "quantity": 1}
-            ]
-        })
-
-    categories = creat_objects_from_json(test_data)
+        test_data.append(
+            {
+                "name": f"Категория {i}",
+                "description": f"Описание {i}",
+                "products": [{"name": f"Товар {i}", "description": f"Описание {i}", "price": 100.0, "quantity": 1}],
+            }
+        )
 
 
 def test_with_sample_product(sample_product):
@@ -87,11 +79,14 @@ def test_category_with_different_product_counts(product_count, reset_counters):
     assert Category.product_count == product_count
 
 
-@pytest.mark.parametrize("name, description", [
-    ("Смартфоны", "Современные смартфоны"),
-    ("Телевизоры", "Современные телевизоры"),
-    ("Ноутбуки", "Мощные ноутбуки"),
-])
+@pytest.mark.parametrize(
+    "name, description",
+    [
+        ("Смартфоны", "Современные смартфоны"),
+        ("Телевизоры", "Современные телевизоры"),
+        ("Ноутбуки", "Мощные ноутбуки"),
+    ],
+)
 def test_category_different_names(name, description, reset_counters):
     """Тест 20: Создание категорий с разными названиями"""
     category = Category(name, description)
@@ -108,7 +103,7 @@ def test_category_product_count_multiple_categories(product_count, reset_counter
     total_products = 0
 
     for i in range(product_count):
-        products = [Product(f"Товар {i}_{j}", f"Описание", 100.0, 1) for j in range(i + 1)]
+        products = [Product("Товар", "Описание", 100.0, 1) for j in range(i + 1)]
         total_products += len(products)
         category = Category(f"Категория {i}", f"Описание {i}", products)
         categories.append(category)

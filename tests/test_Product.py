@@ -1,7 +1,6 @@
 from src.Product import Product
 
 
-
 def test_product(sample_product):
     """Создание тестового продукта"""
     assert sample_product.name == "Ноутбук"
@@ -11,7 +10,7 @@ def test_product(sample_product):
 
 
 def test_product_with_zero_quantity():
-    """ Создание продукта с нулевым количеством"""
+    """Создание продукта с нулевым количеством"""
     product = Product("Телефон", "Смартфон", 50000.00, 0)
 
     assert product.name == "Телефон"
@@ -36,7 +35,7 @@ def test_product_with_float_price():
 
 
 def test_product_with_int_price():
-    """ Создание продукта с целой ценой"""
+    """Создание продукта с целой ценой"""
     product = Product("Товар", "Описание", 100, 10)
 
     assert product.price == 100

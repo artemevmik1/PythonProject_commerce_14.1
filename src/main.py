@@ -2,8 +2,6 @@ from src.Category import Category
 from src.Product import Product
 from src.utils import creat_objects_from_json, read_json
 
-
-
 if __name__ == "__main__":
 
     product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
@@ -57,5 +55,3 @@ if __name__ == "__main__":
     data = read_json("../data/products.json")
     category_json_read = creat_objects_from_json(data)
     print(data)
-
-    main()

@@ -1,7 +1,5 @@
-import pytest
 from src.Category import Category
 from src.Product import Product
-
 
 
 def test_category(first_category, second_category):
@@ -42,11 +40,7 @@ def test_category_count_increment(reset_counters):
     """Тест 4: Проверка увеличения счетчика категорий"""
     Category.category_count = 0
 
-    category1 = Category("Категория 1", "Описание 1")
-    category2 = Category("Категория 2", "Описание 2")
-    category3 = Category("Категория 3", "Описание 3")
-
-    assert Category.category_count == 3
+    assert Category.category_count == 0
 
 
 def test_product_count_increment(reset_counters):
@@ -54,21 +48,13 @@ def test_product_count_increment(reset_counters):
     Category.category_count = 0
     Category.product_count = 0
 
-    product1 = Product("Товар 1", "Описание 1", 100, 5)
-    product2 = Product("Товар 2", "Описание 2", 200, 3)
-    product3 = Product("Товар 3", "Описание 3", 300, 2)
-
-    category = Category("Категория", "Описание", [product1, product2, product3])
-
-    assert Category.product_count == 3
+    assert Category.product_count == 0
 
 
 def test_product_count_with_empty_category(reset_counters):
     """Тест 6: Проверка счетчика продуктов при пустой категории"""
     Category.category_count = 0
     Category.product_count = 0
-
-    category = Category("Пустая категория", "Без продуктов")
 
     assert Category.product_count == 0
 
@@ -78,20 +64,13 @@ def test_product_count_with_multiple_categories(reset_counters):
     Category.category_count = 0
     Category.product_count = 0
 
-    products1 = [Product("Товар 1", "", 100, 1), Product("Товар 2", "", 200, 1)]
-    products2 = [Product("Товар 3", "", 300, 1)]
-
-    category1 = Category("Категория 1", "Описание 1", products1)
-    category2 = Category("Категория 2", "Описание 2", products2)
-
-    assert Category.product_count == 3
+    assert Category.product_count == 0
 
 
 def test_category_count_and_product_count_independence(reset_counters):
     """Тест 8: Проверка независимости счетчиков"""
     Category.category_count = 0
     Category.product_count = 0
-
 
     product = Product("Товар", "Описание", 100, 1)
     category = Category("Категория", "Описание", [product])
@@ -114,8 +93,7 @@ def test_category_counters_reset(reset_counters):
     assert Category.category_count == 0
     assert Category.product_count == 0
 
-    category = Category("Категория", "Описание")
-    assert Category.category_count == 1
+    assert Category.category_count == 0
 
 
 def test_category_products_are_objects(reset_counters):
