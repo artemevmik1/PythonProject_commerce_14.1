@@ -55,3 +55,4 @@ if __name__ == "__main__":
     data = read_json("../data/products.json")
     category_json_read = creat_objects_from_json(data)
     print(data)
+
