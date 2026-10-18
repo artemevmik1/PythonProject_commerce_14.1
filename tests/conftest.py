@@ -124,3 +124,4 @@ def product(product_data):
     """Готовый товар через new_product."""
     return Product.new_product(product_data)
 
+

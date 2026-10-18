@@ -12,6 +12,10 @@ class Category:
         Category.product_count += len(self.__products) if products is not None else 0
 
 
+    def __str__(self):
+        return f"{self.name}, количество продуктов: {self.product_count}"
+
+
     def add_product(self, product):
         """Добавляет товар в категорию."""
         self.__products.append(product)

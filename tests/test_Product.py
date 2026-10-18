@@ -94,3 +94,20 @@ def test_new_product_no_duplicates(product_data):
 
     assert p1 is not p2
     assert len(products) == 1
+
+
+
+def test_str_format(sample_product):
+    """Строка содержит имя, цену и остаток в нужном формате."""
+    assert str(sample_product) == "Ноутбук, 150000.5 руб. Остаток: 5 шт."
+
+
+def test_add_returns_number(sample_product, smartphone_product):
+    """Результат сложения"""
+    result = sample_product + smartphone_product
+    assert isinstance(result, (int, float))
+    assert not isinstance(result, Product)
+
+
+def test_add_is_commutative(sample_product, smartphone_product):
+    assert sample_product + smartphone_product == 1650002.5

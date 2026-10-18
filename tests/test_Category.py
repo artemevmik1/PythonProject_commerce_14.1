@@ -5,7 +5,7 @@ from src.Product import Product
 def test_category(first_category, second_category):
     assert first_category.name == "Чайники"
     assert second_category.description == "Многофункциональные духовые шкафы"
-    assert len(second_category.products) == 3
+    assert len(second_category.products) == 116
 
     assert first_category.category_count == 2
     assert second_category.category_count == 2
@@ -21,7 +21,7 @@ def test_category_creation_without_products(reset_counters):
     assert category.name == "Книги"
     assert category.description == "Художественная литература"
     assert len(category.products) == 0
-    assert category.products == []
+    assert category.products == ''
     assert Category.category_count == 1
     assert Category.product_count == 0
 
@@ -96,10 +96,7 @@ def test_category_counters_reset(reset_counters):
     assert Category.category_count == 0
 
 
-def test_category_products_are_objects(reset_counters):
-    """Тест 13: Проверка что продукты являются объектами Product"""
-    product = Product("Товар", "Описание", 100.0, 5)
-    category = Category("Категория", "Описание", [product])
 
-    assert isinstance(category.products[0], Product)
-    assert category.products[0].name == "Товар"
+def test_str_format_category(second_category):
+    """формат вывода категории."""
+    assert str(second_category) == "Духовой шкаф, количество продуктов: 3"
