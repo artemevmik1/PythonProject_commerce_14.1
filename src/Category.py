@@ -13,7 +13,8 @@ class Category:
 
 
     def __str__(self):
-        return f"{self.name}, количество продуктов: {self.product_count}"
+        total_quantity = sum(product.quantity for product in self.__products)
+        return f"{self.name}, количество продуктов: {total_quantity}"
 
 
     def add_product(self, product):
