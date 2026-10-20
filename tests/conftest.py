@@ -105,3 +105,23 @@ def sample_category(reset_counters, sample_products):
 def empty_category(reset_counters):
     """Фикстура: Создание пустой категории"""
     return Category("Книги", "Художественная литература")
+
+
+
+@pytest.fixture
+def product_data():
+    """Словарь-заготовка для new_product."""
+    return {
+        "name": "Смартфон",
+        "description": "Флагман",
+        "price": 80,
+        "quantity": 15,
+    }
+
+
+@pytest.fixture
+def product(product_data):
+    """Готовый товар через new_product."""
+    return Product.new_product(product_data)
+
+
