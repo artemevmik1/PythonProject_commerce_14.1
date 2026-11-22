@@ -2,7 +2,8 @@ import pytest
 
 from src.Category import Category
 from src.Product import Product
-
+from src.LawnGrass import LawnGrass
+from src.Smartphone import Smartphone
 
 @pytest.fixture
 def first_category():
@@ -124,4 +125,47 @@ def product(product_data):
     """Готовый товар через new_product."""
     return Product.new_product(product_data)
 
+@pytest.fixture
+def smartphone():
+    return Smartphone(
+        name="Galaxy S24",
+        description="флагман",
+        price=89990.0,
+        quantity=2,
+        efficiency="высокая",
+        model="S24",
+        memory=256,
+        color="чёрный",
+    )
 
+
+@pytest.fixture
+def smartphone2():
+    return Smartphone(
+        name="iPhone 15",
+        description="флагман",
+        price=99990.0,
+        quantity=1,
+        efficiency="высокая",
+        model="15",
+        memory=128,
+        color="синий",
+    )
+
+
+@pytest.fixture
+def lawn_grass():
+    return LawnGrass(
+        name="Газон Люкс",
+        description="смесь",
+        price=850.0,
+        quantity=10,
+        country="Россия",
+        germination_period="7–14 дней",
+        color="зелёный",
+    )
+
+
+@pytest.fixture
+def category():
+    return Category("Электроника", "Гаджеты")

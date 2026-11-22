@@ -1,5 +1,5 @@
 from src.Product import Product
-
+import pytest
 
 def test_product(sample_product):
     """Создание тестового продукта"""
@@ -111,3 +111,35 @@ def test_add_returns_number(sample_product, smartphone_product):
 
 def test_add_is_commutative(sample_product, smartphone_product):
     assert sample_product + smartphone_product == 1650002.5
+
+
+
+def test_add_two_smartphones(smartphone, smartphone2):
+    # 89990*2 + 99990*1 = 279970
+    assert smartphone + smartphone2 == 279970.0
+
+
+def test_add_smartphone_and_lawn_grass_raises(smartphone, lawn_grass):
+    with pytest.raises(TypeError) as exc:
+        smartphone + lawn_grass
+    msg = str(exc.value)
+    assert "Smartphone" in msg
+    assert "LawnGrass" in msg
+
+
+def test_add_lawn_grass_and_smartphone_raises(smartphone, lawn_grass):
+    with pytest.raises(TypeError):
+        lawn_grass + smartphone
+
+def test_add_product_and_smartphone_raises(product, smartphone):
+    # Product и Smartphone — разные классы, хотя оба Product
+    with pytest.raises(TypeError):
+        product + smartphone
+
+
+def test_add_with_foreign_type_raises(product):
+    # NotImplemented → Python сам кидает TypeError
+    with pytest.raises(TypeError):
+        product + "строка"
+    with pytest.raises(TypeError):
+        product + 42

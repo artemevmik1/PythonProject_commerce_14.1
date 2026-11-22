@@ -13,12 +13,19 @@ class Product:
     def __str__(self):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
-
     def __add__(self, other):
+        # чужой тип
         if not isinstance(other, Product):
             return NotImplemented
-        return self.price * self.quantity + other.price * other.quantity
 
+        # оба товара, но разные классы — явная ошибка
+        if type(self) is not type(other):
+            raise TypeError(
+                f"Нельзя сложить {type(self).__name__} и {type(other).__name__}: "
+                "складывать можно только товары одного класса"
+            )
+
+        return self.price * self.quantity + other.price * other.quantity
 
     @property
     def price(self):
@@ -56,6 +63,3 @@ class Product:
             price=price,
             quantity=quantity,
         )
-
-
-

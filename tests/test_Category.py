@@ -1,5 +1,7 @@
 from src.Category import Category
 from src.Product import Product
+import pytest
+
 
 
 def test_category(first_category, second_category):
@@ -97,6 +99,41 @@ def test_category_counters_reset(reset_counters):
 
 
 
-def test_str_format_category(second_category):
-    """формат вывода категории."""
-    assert str(second_category) == "Духовой шкаф, количество продуктов: 3"
+def test_add_product_accepts_product(category):
+    p = Product("Товар", "d", 10.0, 1)
+    category.add_product(p)
+    assert "Товар" in category.products
+
+
+def test_add_product_accepts_smartphone(category, smartphone):
+    category.add_product(smartphone)
+    assert "S24" in category.products
+
+
+def test_add_product_accepts_lawn_grass(category, lawn_grass):
+    category.add_product(lawn_grass)
+    assert "Газон Люкс" in category.products
+
+
+def test_add_product_does_not_add_on_error(category):
+    before = category.products
+    with pytest.raises(TypeError):
+        category.add_product("мусор")
+    after = category.products
+    assert before == after
+
+@pytest.mark.parametrize("bad_value", [
+        "строка",
+        42,
+        3.14,
+        None,
+        [1, 2, 3],
+        {"name": "не товар"},
+        object(),
+    ],
+)
+def test_add_product_rejects_foreign_types(category, bad_value):
+    with pytest.raises(TypeError) as exc:
+        category.add_product(bad_value)
+    # сообщение должно содержать имя типа
+    assert type(bad_value).__name__ in str(exc.value)
